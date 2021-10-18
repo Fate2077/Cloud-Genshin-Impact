@@ -45,7 +45,8 @@ def main_handler(event, context):
     logging.debug(f"ListNotifications->{rsp.text}")
     rewards = rsp.json()['data']['list']
     logging.info(f"总共有{len(rewards)}个奖励待领取。")
-    for reward in rsp.json()['data']['list']:
+
+    for reward in rewards:
         reward_id = reward['id']
         reward_msg = reward['msg']
         rsp = requests.post(f'{host}/hk4e_cg_cn/gamer/api/ackNotification',
